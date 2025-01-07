@@ -10,3 +10,7 @@ Para executar o programa em C:
 gcc -O3 MiniEP2.c -o MiniEP2 -lm
 ./MiniEP2
 ```
+
+## Resultados 
+
+Os resultados podem ser analisados no arquivo $\texttt{Relatorio.txt}$
