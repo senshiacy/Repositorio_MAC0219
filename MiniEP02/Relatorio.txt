@@ -1,0 +1,18 @@
+14600541
+Nathália Yukimi Uchiyama Tsuno
+
+Melhoria 1) Redução de um dos três laços encaixados no penúltimo for(L45-66).
+
+Melhoria 2) Substituição da tipagem das variáveis. Operações em ponto flutuante são extremamente custosos. Portanto, cada variável "double" se tornou "float", e cada variável "int", em "short int". A precisão dos cálculos foi menor, mas, assintota ao esperado.
+Melhoria 2.1) O uso do "f" à frente de cada constante em ponto flutuante, permitiu uma eficácia maior, em razão de forçar o processamento dentro de menos bits.
+
+Melhoria 3) Exclusão da condicional no laço encaixado no penúltimo for (L45-66). A condição (t == t0) foi tratada individualmente fora do loop, restando o bloco de comandos de else, apenas, a ser executado no interior do for. Isso economiza operações de comparações. Ademais, retirou-se a atribuição de valores deltaleapfrog <- deltat, mantendo aquela constante.
+
+Melhoria 4) Atribuição Hardcoded em arrays e loops, para valores nx = 500.
+Melhoria 4.1) Exclusão de variáveis temporárias (x0, xf, t0, tf, nt) e declaração única delas, principalmente, sobre o i.
+
+Melhoria 5) Concatenação de uma string com resultados para posterior impressão num único printf() (L52-57).
+
+Melhoria 6) Compilação com a flag -O3, que busca a maior otimização.
+
+Melhoria 7) Substituição de todos os while's por for's.
