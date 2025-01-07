@@ -10,7 +10,3 @@ Para compilar e executar o programa:
 make mini_ep3.c
 ./mini_ep3
 ```
-
-## Resultados
-
-As análises estão disponíveis no documento $\texttt{Repositorio\_MAC0219/MiniEP03/MAC0219\_\_\_Relatório\_do\_Mini\_EP\_3.pdf}$
