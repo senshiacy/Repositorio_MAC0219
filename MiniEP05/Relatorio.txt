@@ -1,0 +1,54 @@
+# Mini EP5 - Jumping Frogs Puzzle
+
+Tal como sapos pulam na lagoa, vamos permitir que nossas Threads saltem livremente pelo nosso programa.
+
+# Em terra de sapo, quem tem o Mutex é rei
+
+Nosso programa inicializa requerendo o valor das N rãs e dos M sapos, além do número de tentativas.
+Para cada tentativa, inicializam-se N + M threads de forma aleatória, mas, que aguardam a criação de todas pela ação da barreira. Cada Thread possui um id distinto, que identifica a sua posição inicial no tabuleiro.
+
+Em seguida, para cada Thread, desempenham-se papéis distintos sobre o tabuleiro global: para os sapos, se a pedra à esquerda ou a segunda à esquerda estiverem marcadas por um zero, significa que há uma pedra livre. O sapo, pela ação da função swap, troca de lugar com a pedra e atualiza sua posição absoluta. O análogo ocorre com as rãs, mas, para à direita.
+
+Quando nenhuma dessas ações é possível, um contador global é incrementado e quando esse valor estoura um threshold, então, tivemos um deadlock e matamos todas as funções.
+
+Entre a ação de duas Threads, há um usleep(), que "paraliza" o processo por alguns breves momentos e permite que outra Thread possa atuar sobre o tabuleiro, evitando-se congestionamentos.
+
+Contudo, para evitar problemas de concorrência de leitura da variável global e da escrita sobre o tabuleiro global, utilizamos o mutex, que restringe o acesso do conteúdo compartilhado uma Thread por vez. Assim, sendo o caso, uma Thread pode ler e escrever no tabuleiro, se for o caso, sem se preocupar em sobreescrever a ação de outrém.
+
+Ao final de cada execução, verifica-se se todas os sapos estão à direita e as rãs à esquerda. Caso a resposta seja positiva, acresce-se 1 a um contador global. Então, temos a porcentagem de número de sucessos por tentativa.
+
+# C'est la vie
+
+Alguns fatores são consideráveis durante a movimentação de nossas Threads, como a escolha do primeiro a saltar, a preferência e a disputa de recursos, escalonamento de processos.
+
+Por isso, aleatorizar o vetor de criação de Threads poderia evitar uma solução sequencial e potencialmente falha, além da barreira que aguarda a criação de todas as Threads antes de lançá-las no programa.
+
+A solução ótima consiste em N(N + 2) passos, onde N é o número de sapos/rãs. Assim, espera-se que com o dobro desse valor, ou os sapos conseguiram se rearranjar ou entraram em deadlock.
+
+Com alguns testes, verificamos umas tendências para o número de M, N e de T:
+
+Para M = 1 ou N = 1:
+	- 10 testes: 100% (Com uma única Thread, não é difícil que ela não dê conflito de concorrência)
+	- 100 testes: 100% (Com uma única Thread, não é difícil que ela não dê conflito de concorrência)
+
+Para M = N = 1:
+	- 10 testes: 100% (Pela essência do algoritmo, qualquer um pode começar. Este vai para o meio e o outro vai para o destino. Então, o primeiro termina).
+	- 100 testes: 100% (Pela essência do algoritmo, qualquer um pode começar. Este vai para o meio e o outro vai para o destino. Então, o primeiro termina).
+	
+Para M = N = 2:
+	- 10 testes: 10% (Há chance de deadlock se o último sapo saltar primeiro)
+	- 100 testes: 0% (Há chance de deadlock se o último sapo saltar primeiro)
+
+Para M = N = 3:
+	- 10 testes: 10%
+	- 100 testes: 0%
+
+Para M = N = 5:
+	- 10 testes: 0%
+	- 100 testes: 0%
+
+Para M = N = 10:
+	- 10 testes: 0%
+	- 100 testes: 0%
+
+À medida que a quantidade de sapos e rãs aumenta, é mais difícil sincronizar os animais. Sobretudo, porque a resolução desse Puzzle exige esse requisito. Assim, são raros os casos de sucesso do quebra-cabeça e isso já pode ser evidenciado para N > 3.
