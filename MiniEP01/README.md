@@ -13,7 +13,7 @@ python3 MiniEP1.py
 Para a compilação e execução do programa em C:
 
 ```bash
-gcc MiniEP1.c -o MiniEP1
+gcc MiniEP1.c -o MiniEP1 -lm
 ./MiniEP1
 ```
 
