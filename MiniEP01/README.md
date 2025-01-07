@@ -19,4 +19,4 @@ gcc MiniEP1.c -o MiniEP1
 
 ## Resultados
 
-Resultados podem ser comparados no arquivo $\textttt{MiniEP1.txt}$, mas, em suma, para 100 execuções, Python tem tempo médio de execução de 0.1s com dp de 0.003s, enquanto C, 0.03s com dp de 0.001s.
+Resultados podem ser comparados no arquivo $\texttt{MiniEP1.txt}$, mas, em suma, para 100 execuções, Python tem tempo médio de execução de 0.1s com dp de 0.003s, enquanto C, 0.03s com dp de 0.001s.
