@@ -1,0 +1,247 @@
+INFO [2024-11-23 08:09:58,346] main - jepsen.cli Test options:
+ {:args [],
+ :log-net-send false,
+ :node-count 3,
+ :availability :total,
+ :max-txn-length 4,
+ :concurrency 3,
+ :max-writes-per-key 16,
+ :leave-db-running? false,
+ :logging-json? false,
+ :nemesis-interval 10,
+ :log-stderr false,
+ :ssh
+ {:dummy? false,
+  :username "root",
+  :password "root",
+  :strict-host-key-checking false,
+  :private-key-path nil},
+ :rate 1000.0,
+ :argv
+ ("test"
+  "-w"
+  "unique-ids"
+  "--bin"
+  "/home/yukimi/go/bin/maelstrom-unique-ids"
+  "--time-limit"
+  "30"
+  "--rate"
+  "1000"
+  "--node-count"
+  "3"
+  "--availability"
+  "total"
+  "--nemesis"
+  "partition"),
+ :nemesis #{:partition},
+ :nodes ["n0" "n1" "n2"],
+ :test-count 1,
+ :latency {:mean 0, :dist :constant},
+ :bin "/home/yukimi/go/bin/maelstrom-unique-ids",
+ :log-net-recv false,
+ :time-limit 30,
+ :workload :unique-ids,
+ :consistency-models [:strict-serializable],
+ :topology :grid}
+
+INFO [2024-11-23 08:09:58,365] jepsen test runner - jepsen.core Command line:
+lein run test -w unique-ids --bin /home/yukimi/go/bin/maelstrom-unique-ids --time-limit 30 --rate 1000 --node-count 3 --availability total --nemesis partition
+INFO [2024-11-23 08:09:58,413] jepsen test runner - jepsen.core Running test:
+{:args []
+ :remote
+ #jepsen.control.retry.Remote{:remote #jepsen.control.scp.Remote{:cmd-remote #jepsen.control.sshj.SSHJRemote{:concurrency-limit 6,
+                                                                                                             :conn-spec nil,
+                                                                                                             :client nil,
+                                                                                                             :semaphore nil},
+                                                                 :conn-spec nil},
+                              :conn nil}
+ :log-net-send false
+ :node-count 3
+ :availability :total
+ :max-txn-length 4
+ :concurrency 3
+ :db
+ #object[maelstrom.db$db$reify__16142
+         "0x79a15001"
+         "maelstrom.db$db$reify__16142@79a15001"]
+ :max-writes-per-key 16
+ :leave-db-running? false
+ :name "unique-ids"
+ :logging-json? false
+ :start-time
+ #object[org.joda.time.DateTime "0x66227940" "2024-11-23T09:09:58.353-02:00"]
+ :nemesis-interval 10
+ :net
+ #object[maelstrom.net$jepsen_net$reify__15251
+         "0xba76911"
+         "maelstrom.net$jepsen_net$reify__15251@ba76911"]
+ :client
+ #object[maelstrom.workload.unique_ids$client$reify__20074
+         "0xffb8f15"
+         "maelstrom.workload.unique_ids$client$reify__20074@ffb8f15"]
+ :barrier
+ #object[java.util.concurrent.CyclicBarrier
+         "0x1a0b51e7"
+         "java.util.concurrent.CyclicBarrier@1a0b51e7"]
+ :log-stderr false
+ :pure-generators true
+ :ssh {:dummy? true}
+ :rate 1000.0
+ :checker
+ #object[jepsen.checker$compose$reify__11881
+         "0x6f96d39f"
+         "jepsen.checker$compose$reify__11881@6f96d39f"]
+ :argv
+ ("test"
+  "-w"
+  "unique-ids"
+  "--bin"
+  "/home/yukimi/go/bin/maelstrom-unique-ids"
+  "--time-limit"
+  "30"
+  "--rate"
+  "1000"
+  "--node-count"
+  "3"
+  "--availability"
+  "total"
+  "--nemesis"
+  "partition")
+ :nemesis
+ (jepsen.nemesis.ReflCompose
+  {:fm {:start-partition 0,
+        :stop-partition 0,
+        :kill 1,
+        :start 1,
+        :pause 1,
+        :resume 1},
+   :nemeses [#unprintable "jepsen.nemesis.combined$partition_nemesis$reify__16416@5f49c09d"
+             #unprintable "jepsen.nemesis.combined$db_nemesis$reify__16397@c197f46"]})
+ :nodes ["n0" "n1" "n2"]
+ :test-count 1
+ :latency {:mean 0, :dist :constant}
+ :bin "/home/yukimi/go/bin/maelstrom-unique-ids"
+ :generator
+ (jepsen.generator.TimeLimit
+  {:limit 30000000000,
+   :cutoff nil,
+   :gen (jepsen.generator.Any
+         {:gens [(jepsen.generator.OnThreads
+                  {:f #{:nemesis},
+                   :context-filter #object[jepsen.generator.context$make_thread_filter$lazy_filter__9167
+                                           "0x41f05f1"
+                                           "jepsen.generator.context$make_thread_filter$lazy_filter__9167@41f05f1"],
+                   :gen (jepsen.generator.Stagger
+                         {:dt 20000000000,
+                          :next-time nil,
+                          :gen (jepsen.generator.FlipFlop
+                                {:gens [#object[jepsen.nemesis.combined$partition_package$start__16420
+                                                "0x57cd5cc9"
+                                                "jepsen.nemesis.combined$partition_package$start__16420@57cd5cc9"]
+                                        ({:type :info,
+                                          :f :stop-partition,
+                                          :value nil}
+                                         {:type :info,
+                                          :f :stop-partition,
+                                          :value nil}
+                                         {:type :info,
+                                          :f :stop-partition,
+                                          :value nil}
+                                         {:type :info,
+                                          :f :stop-partition,
+                                          :value nil}
+                                         {:type :info,
+                                          :f :stop-partition,
+                                          :value nil}
+                                         {:type :info,
+                                          :f :stop-partition,
+                                          :value nil}
+                                         {:type :info,
+                                          :f :stop-partition,
+                                          :value nil}
+                                         {:type :info,
+                                          :f :stop-partition,
+                                          :value nil}
+                                         ...)],
+                                 :i 0})})})
+                 (jepsen.generator.OnThreads
+                  {:f #jepsen.generator.context.AllBut{:element :nemesis},
+                   :context-filter #object[jepsen.generator.context$make_thread_filter$lazy_filter__9167
+                                           "0x44f433db"
+                                           "jepsen.generator.context$make_thread_filter$lazy_filter__9167@44f433db"],
+                   :gen (jepsen.generator.Stagger
+                         {:dt 2000000,
+                          :next-time nil,
+                          :gen (jepsen.generator.Repeat
+                                {:remaining -1, :gen {:f :generate}})})})]})})
+ :log-net-recv false
+ :os
+ #object[maelstrom.net$jepsen_os$reify__15254
+         "0x38388639"
+         "maelstrom.net$jepsen_os$reify__15254@38388639"]
+ :time-limit 30
+ :workload :unique-ids
+ :consistency-models [:strict-serializable]
+ :topology :grid}
+
+INFO [2024-11-23 08:09:59,913] jepsen node n0 - maelstrom.net Starting Maelstrom network
+INFO [2024-11-23 08:09:59,914] jepsen test runner - jepsen.db Tearing down DB
+INFO [2024-11-23 08:09:59,917] jepsen test runner - jepsen.db Setting up DB
+INFO [2024-11-23 08:09:59,918] jepsen node n2 - maelstrom.db Setting up n2
+INFO [2024-11-23 08:09:59,918] jepsen node n1 - maelstrom.db Setting up n1
+INFO [2024-11-23 08:09:59,918] jepsen node n2 - maelstrom.process launching /home/yukimi/go/bin/maelstrom-unique-ids []
+INFO [2024-11-23 08:09:59,919] jepsen node n1 - maelstrom.process launching /home/yukimi/go/bin/maelstrom-unique-ids []
+INFO [2024-11-23 08:09:59,919] jepsen node n0 - maelstrom.service Starting services: (lin-kv lin-tso lww-kv seq-kv)
+INFO [2024-11-23 08:09:59,921] jepsen node n0 - maelstrom.db Setting up n0
+INFO [2024-11-23 08:09:59,922] jepsen node n0 - maelstrom.process launching /home/yukimi/go/bin/maelstrom-unique-ids []
+WARN [2024-11-23 08:09:59,947] n2 stdout - maelstrom.process Error!
+clojure.lang.ExceptionInfo: Node n2 printed a line to STDOUT which was not well-formed JSON:
+Node que possui o ID: 
+Did you mean to encode this line as JSON? Or was this line intended for STDERR? See doc/protocol.md for more guidance.
+	at slingshot.support$stack_trace.invoke(support.clj:201)
+	at maelstrom.process$parse_msg$fn__15856.invoke(process.clj:47)
+	at maelstrom.process$parse_msg.invokeStatic(process.clj:45)
+	at maelstrom.process$parse_msg.invoke(process.clj:35)
+	at maelstrom.process$stdout_thread$fn__15878$fn__15879$fn__15881.invoke(process.clj:146)
+	at maelstrom.process$stdout_thread$fn__15878$fn__15879.invoke(process.clj:146)
+	at maelstrom.process$stdout_thread$fn__15878.invoke(process.clj:140)
+	at clojure.core$binding_conveyor_fn$fn__5823.invoke(core.clj:2047)
+	at clojure.lang.AFn.call(AFn.java:18)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+WARN [2024-11-23 08:09:59,947] n0 stdout - maelstrom.process Error!
+clojure.lang.ExceptionInfo: Node n0 printed a line to STDOUT which was not well-formed JSON:
+Node que possui o ID: 
+Did you mean to encode this line as JSON? Or was this line intended for STDERR? See doc/protocol.md for more guidance.
+	at slingshot.support$stack_trace.invoke(support.clj:201)
+	at maelstrom.process$parse_msg$fn__15856.invoke(process.clj:47)
+	at maelstrom.process$parse_msg.invokeStatic(process.clj:45)
+	at maelstrom.process$parse_msg.invoke(process.clj:35)
+	at maelstrom.process$stdout_thread$fn__15878$fn__15879$fn__15881.invoke(process.clj:146)
+	at maelstrom.process$stdout_thread$fn__15878$fn__15879.invoke(process.clj:146)
+	at maelstrom.process$stdout_thread$fn__15878.invoke(process.clj:140)
+	at clojure.core$binding_conveyor_fn$fn__5823.invoke(core.clj:2047)
+	at clojure.lang.AFn.call(AFn.java:18)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+WARN [2024-11-23 08:09:59,947] n1 stdout - maelstrom.process Error!
+clojure.lang.ExceptionInfo: Node n1 printed a line to STDOUT which was not well-formed JSON:
+Node que possui o ID: 
+Did you mean to encode this line as JSON? Or was this line intended for STDERR? See doc/protocol.md for more guidance.
+	at slingshot.support$stack_trace.invoke(support.clj:201)
+	at maelstrom.process$parse_msg$fn__15856.invoke(process.clj:47)
+	at maelstrom.process$parse_msg.invokeStatic(process.clj:45)
+	at maelstrom.process$parse_msg.invoke(process.clj:35)
+	at maelstrom.process$stdout_thread$fn__15878$fn__15879$fn__15881.invoke(process.clj:146)
+	at maelstrom.process$stdout_thread$fn__15878$fn__15879.invoke(process.clj:146)
+	at maelstrom.process$stdout_thread$fn__15878.invoke(process.clj:140)
+	at clojure.core$binding_conveyor_fn$fn__5823.invoke(core.clj:2047)
+	at clojure.lang.AFn.call(AFn.java:18)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
