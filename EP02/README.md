@@ -38,3 +38,7 @@ make heat-tarefa3
 ./heat-tarefa2
 ./heat-tarefa3
 ```
+
+## Resultados
+
+As análises estão disponíveis em *MAC0219___Relatório_EP02.pdf*
