@@ -1,3 +1,0 @@
-2024/11/23 08:09:59 Received {c1 n2 {"type":"init","node_id":"n2","node_ids":["n0","n1","n2"],"msg_id":1}}
-2024/11/23 08:09:59 Node n2 initialized
-2024/11/23 08:09:59 Sent {"src":"n2","dest":"c1","body":{"in_reply_to":1,"type":"init_ok"}}
