@@ -48,3 +48,7 @@ Para a parte 3 do problema:
 ## Resultados
 
 Podem ser obtidos em *MAC0219___Relatório_Mini_EP_8-2-1.pdf*
+
+## Atualizações
+
+Até um certo tempo, mantive os diretórios organizados conforme especificado. Contudo, isso enviesou as linguagens do mini ep. Assim, recomendo baixar as dependências conforme o enunciado do mini ep para conseguir rodar os programas criados.
